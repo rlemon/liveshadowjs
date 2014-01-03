@@ -46,6 +46,12 @@ The shadow color desaturation amount if the color is auto detected.
 Accepts: 0 (none) to 1 (full)  
 Default: 0.1  
 
+
+####invert
+Inverts the shadow angle.  
+Default: false  
+
+
 ## Basic Usage
 	
 	$(selector).liveShadow(); 	// all options are optional.

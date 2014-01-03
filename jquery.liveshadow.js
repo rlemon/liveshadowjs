@@ -39,7 +39,8 @@ $.fn.liveShadow = function (options) {
 
 	// I'm not a huge fan of this code... but it works? so yea... 
 	var getColor = function (elm) {
-		var rgb = window.getComputedStyle(elm).backgroundColor.match(/^rgb\((.*)\)$/, '')[1].split(',').map(Number);
+		var colorOption = options.type === 'text' ? 'color' : 'backgroundColor',
+			rgb = window.getComputedStyle(elm)[colorOption].match(/^rgb\((.*)\)$/, '')[1].split(',').map(Number);
 		return {
 			r: rgb[0],
 			g: rgb[1],
@@ -54,7 +55,8 @@ $.fn.liveShadow = function (options) {
 		color: null,
 		distance: document.body.offsetWidth / 4,
 		angle: 45,
-		desaturate: 0.1
+		desaturate: 0.1,
+		invert: false
 	};
 
 	options = $.extend(defaults, options);
@@ -85,6 +87,9 @@ $.fn.liveShadow = function (options) {
 				col = $.extend({
 					a: o
 				}, color);
+			if( options.invert ) {
+				a *= -1;
+			}
 			render(_this, l, a, col);
 		});
 	});
