@@ -40,7 +40,7 @@ $.fn.liveShadow = function (options) {
 	// I'm not a huge fan of this code... but it works? so yea... 
 	var getColor = function (elm) {
 		var colorOption = options.type === 'text' ? 'color' : 'backgroundColor',
-			rgb = window.getComputedStyle(elm)[colorOption].match(/^rgb\((.*)\)$/, '')[1].split(',').map(Number);
+			rgb = window.getComputedStyle(elm)[colorOption].match(/\d+/g).map(Number);
 		return {
 			r: rgb[0],
 			g: rgb[1],
