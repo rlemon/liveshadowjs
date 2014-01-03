@@ -8,11 +8,11 @@ $.fn.liveShadow = function (options) {
             g: 0,
             b: 0
         },
+		distance: document.body.offsetWidth / 4,
         angle: 45
     };
 
     options = $.extend(defaults, options);
-    options.lightDistance = document.body.offsetWidth / 4;
     options.constAngle = (90 * (Math.PI / 180));
 
     var render = function (elm, l, a, c) {
@@ -36,7 +36,7 @@ $.fn.liveShadow = function (options) {
             hh = this.offsetHeight / 2,
             pos = $(this).offset(),
             _this = this;
-        render(_this, options.lightDistance, options.constAngle - options.angle, $.extend({
+        render(_this, options.distance, options.constAngle - options.angle, $.extend({
             a: options.opacity
         }, options.color));
         $(window).on('mousemove', function (e) {
@@ -44,8 +44,8 @@ $.fn.liveShadow = function (options) {
                 dy = pos.top - e.clientY + hh,
                 a = options.constAngle - Math.atan2(dx, dy),
                 d = Math.sqrt(dx * dx + dy * dy),
-                o = d < options.lightDistance ? (d / options.lightDistance) * options.opacity : options.opacity,
-                l = d < options.lightDistance ? (d / options.lightDistance) * options.shadowLength : options.shadowLength,
+                o = d < options.distance ? (d / options.distance) * options.opacity : options.opacity,
+                l = d < options.distance ? (d / options.distance) * options.shadowLength : options.shadowLength,
                 col = $.extend({
                     a: o
                 }, options.color);
