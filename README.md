@@ -10,17 +10,17 @@ liveShadow.js is still in early development. While it is perfectly usable today,
 ## Options
 
 ####shadowLength
-The total distance in pixels of the full length shadow. 
-Default: 70
+The total distance in pixels of the full length shadow.  
+Default: 70  
 
 
 ####opacity  
-Start Opacity  
+Start Opacity    
 Default: 0.7  
 
 
 ####type  
-The shadow type. 
+The shadow type.  
 Accepts: 'box', 'text'  
 Default: 'box'  
 
@@ -37,14 +37,14 @@ Default: 1/4 body width
 
 
 ####angle  
-The initial angle for the shadow before mouse interaction 
+The initial angle for the shadow before mouse interaction  
 Default: 45  
 
 
 ####desaturate  
 The shadow color desaturation amount if the color is auto detected.  
-Accepts: 0 (none) to 1 (full)
-Default: 0.1
+Accepts: 0 (none) to 1 (full)  
+Default: 0.1  
 
 ## Basic Usage
 	
