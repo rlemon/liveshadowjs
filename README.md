@@ -35,8 +35,6 @@ liveShadow.js is still in early development. While it is perfectly usable today,
  - Flat Shadows and Drop Shadows
  - Static Shadows (no mousemove listener) 
  - MouseMove Container (so you can specify something other than window) 
- - automatic colour detection of the parent element
- - hex colour input
  - remove shadow option
  - wiki
  - homepage

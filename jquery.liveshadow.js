@@ -11,7 +11,7 @@ $.fn.liveShadow = function (options) {
 			x = i * ax;
 			y = i * ay;
 			s += 0.75;
-			ln.push(x + 'px ' + y + 'px ' + s + 'px ' + 'rgba(' + c.r + ',' + c.b + ',' + c.g + ',' + (c.a - (i / (l / 4))) + ')');
+			ln.push(x + 'px ' + y + 'px ' + s + 'px ' + 'rgba(' + c.r + ',' + c.g + ',' + c.b + ',' + (c.a - (i / (l / 4))) + ')');
 		}
 		elm.style[options.type + 'Shadow'] = ln.join(',');
 	};
@@ -26,34 +26,43 @@ $.fn.liveShadow = function (options) {
 			b: h & 0xff
 		};
 	};
+	// I'm not a huge fan of this code... but it works? so yea... 
+	var getColor = function(elm) {
+		var rgb = window.getComputedStyle(elm).backgroundColor.match(/^rgb\((.*)\)$/, '')[1].split(',').map(Number);
+		return {
+			r: rgb[0],
+			g: rgb[1],
+			b: rgb[2]
+		}
+	};
+		
 	var defaults = {
 		shadowLength: 70,
 		opacity: 0.7,
 		type: 'box',
-		color: {
-			r: 0,
-			g: 0,
-			b: 0
-		},
+		color: null,
 		distance: document.body.offsetWidth / 4,
 		angle: 45
 	};
+	
+	options = $.extend(defaults, options);
 	if (typeof options.color === 'string') {
 		options.color = colorConverter(options.color);
 	}
 	if (options.color && options.color.a) {
 		options.opacity = options.color.a;
 	}
-	options = $.extend(defaults, options);
 	options.constAngle = (90 * (Math.PI / 180));
+	
 	return this.each(function () {
 		var hw = this.offsetWidth / 2,
 			hh = this.offsetHeight / 2,
 			pos = $(this).offset(),
 			_this = this;
+		var color = 'color' in options ? options.color : getColor(this);
 		render(_this, options.shadowLength, options.constAngle - options.angle, $.extend({
 			a: options.opacity
-		}, options.color));
+		}, color));
 		$(window).on('mousemove', function (e) {
 			var dx = pos.left - e.clientX + hw,
 				dy = pos.top - e.clientY + hh,
@@ -63,7 +72,7 @@ $.fn.liveShadow = function (options) {
 				l = d < options.distance ? (d / options.distance) * options.shadowLength : options.shadowLength,
 				col = $.extend({
 					a: o
-				}, options.color);
+				}, color);
 			render(_this, l, a, col);
 		});
 	});
