@@ -26,8 +26,19 @@ $.fn.liveShadow = function (options) {
 			b: h & 0xff
 		};
 	};
+
+	// modified version of http://www.samstarling.co.uk/2012/05/desaturating-colours-using-javascript/
+	var desaturate = function (col, amt) {
+		var i = 0.3 * col.r + 0.59 * col.g + 0.11 * col.b;
+		return {
+			r: i * amt + col.r * (1 - amt) | 0,
+			g: i * amt + col.g * (1 - amt) | 0,
+			b: i * amt + col.b * (1 - amt) | 0
+		}
+	};
+
 	// I'm not a huge fan of this code... but it works? so yea... 
-	var getColor = function(elm) {
+	var getColor = function (elm) {
 		var rgb = window.getComputedStyle(elm).backgroundColor.match(/^rgb\((.*)\)$/, '')[1].split(',').map(Number);
 		return {
 			r: rgb[0],
@@ -35,16 +46,17 @@ $.fn.liveShadow = function (options) {
 			b: rgb[2]
 		}
 	};
-		
+
 	var defaults = {
 		shadowLength: 70,
 		opacity: 0.7,
 		type: 'box',
 		color: null,
 		distance: document.body.offsetWidth / 4,
-		angle: 45
+		angle: 45,
+		desaturate: 0.1
 	};
-	
+
 	options = $.extend(defaults, options);
 	if (typeof options.color === 'string') {
 		options.color = colorConverter(options.color);
@@ -53,13 +65,13 @@ $.fn.liveShadow = function (options) {
 		options.opacity = options.color.a;
 	}
 	options.constAngle = (90 * (Math.PI / 180));
-	
+
 	return this.each(function () {
 		var hw = this.offsetWidth / 2,
 			hh = this.offsetHeight / 2,
 			pos = $(this).offset(),
 			_this = this;
-		var color = 'color' in options ? options.color : getColor(this);
+		var color = options.color || desaturate(getColor(this), options.desaturate);
 		render(_this, options.shadowLength, options.constAngle - options.angle, $.extend({
 			a: options.opacity
 		}, color));
