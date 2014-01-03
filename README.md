@@ -7,30 +7,50 @@ Interactive eye catching shadows made easy!
 
 liveShadow.js is still in early development. While it is perfectly usable today, it will be expanded to support more rich features and options. Check back for the latest code and updates.  
 
-## Usage 
+## Options
+
+####shadowLength
+The total distance in pixels of the full length shadow. 
+Default: 70
+
+
+####opacity  
+Start Opacity  
+Default: 0.7  
+
+
+####type  
+The shadow type. 
+Accepts: 'box', 'text'  
+Default: 'box'  
+
+
+####color 
+The shadow color (Note: If no color is specified the background color / color of the element will be used)  
+Accepts: an object formatted like `{r:0,g:0,b:0}` or hex. (Note: short or long form, the # is optional)  
+Default: auto detect  
+
+
+####distance  
+The distance from the mouse in pixels that effects the shadow.  
+Default: 1/4 body width  
+
+
+####angle  
+The initial angle for the shadow before mouse interaction 
+Default: 45  
+
+
+####desaturate  
+The shadow color desaturation amount if the color is auto detected.  
+Accepts: 0 (none) to 1 (full)
+Default: 0.1
+
+## Basic Usage
 	
 	$(selector).liveShadow(); 	// all options are optional.
-
-	$(selector).liveShadow({
-		// the overall length of the resulting shadow.
-		shadowLength: 45,		// default 70
-		// the beginning opacity of the shadow.
-		opacity: 0.5,			// default .7
-		// the type of shadow, text or box. 
-		type: 'text',			// default 'box'
-		// the rgb color
-		color: {				// default
-			r: 90, 				// 0
-			g: 90, 				// 0
-			b: 90				// 0
-		},
-		// the distance from the mouse cursor the light has an effect on
-		distance: 128,			// default is 1/4 the body width
-		// the start angle, 0 is up. 
-		angle: 0				// default 45
-		
-	});
 	
+
 ## Roadmap
  - Flat Shadows and Drop Shadows
  - Static Shadows (no mousemove listener) 
