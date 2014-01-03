@@ -24,6 +24,8 @@ liveShadow.js is still in early development. While it is perfectly usable today,
 			g: 90, 				// 0
 			b: 90				// 0
 		},
+		// the distance from the mouse cursor the light has an effect on
+		distance: 128,			// default is 1/4 the body width
 		// the start angle, 0 is up. 
 		angle: 0				// default 45
 		
