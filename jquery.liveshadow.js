@@ -88,7 +88,6 @@ $.fn.liveShadow = function (options) {
                 col = $.extend({
                     a: o
                 }, color);
-            console.log(pos.left);
             if (options.invert) {
                 a *= -1;
             }
