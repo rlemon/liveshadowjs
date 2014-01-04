@@ -74,7 +74,7 @@ $.fn.liveShadow = function (options) {
             pos = $(this).offset(),
             _this = this;
         var color = options.color || desaturate(getColor(this), options.desaturate);
-		var positon = function (e) {
+		var position = function (e) {
             var dx = pos.left - e.clientX + hw,
                 dy = pos.top - e.clientY + hh,
                 a = options.constAngle - Math.atan2(dx, dy),
@@ -97,6 +97,6 @@ $.fn.liveShadow = function (options) {
             hw = _this.offsetWidth / 2;
             hh = _this.offsetHeight / 2;
             pos = $(_this).offset();
-        }).on('mousemove touchmove touchstart', position)
+        }).on('mousemove touchstart', position)
     });
 };
