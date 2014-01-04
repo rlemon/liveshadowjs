@@ -56,6 +56,12 @@ Default: false
 	
 	$(selector).liveShadow(); 	// all options are optional.
 	
+	$(selector).liveShadow({
+		type: 'text',
+		desaturate: 0.5,
+		invert: true
+	});
+	
 
 ## Roadmap
  - Flat Shadows and Drop Shadows
