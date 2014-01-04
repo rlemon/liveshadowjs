@@ -97,6 +97,6 @@ $.fn.liveShadow = function (options) {
             hw = _this.offsetWidth / 2;
             hh = _this.offsetHeight / 2;
             pos = $(_this).offset();
-        }).on('mousemove touchstart', position)
+        }).on('mousemove touchmove', position)
     });
 };
