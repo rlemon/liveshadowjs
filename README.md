@@ -52,6 +52,11 @@ Inverts the shadow angle.
 Default: false  
 
 
+####isStatic
+Shadow angle changes with mouse movement. 
+Default: false  
+
+
 ## Basic Usage
 	
 	$(selector).liveShadow(); 	// all options are optional.
@@ -65,7 +70,6 @@ Default: false
 
 ## Roadmap
  - Flat Shadows and Drop Shadows
- - Static Shadows (no mousemove listener) 
  - MouseMove Container (so you can specify something other than window) 
  - remove shadow option
  - wiki

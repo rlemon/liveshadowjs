@@ -56,7 +56,8 @@ $.fn.liveShadow = function (options) {
         distance: document.body.offsetWidth / 4,
         angle: 45,
         desaturate: 0.1,
-        invert: false
+        invert: false,
+		isStatic: false
     };
 
     options = $.extend(defaults, options);
@@ -97,6 +98,8 @@ $.fn.liveShadow = function (options) {
         render(_this, options.shadowLength, options.constAngle - options.angle, $.extend({
             a: options.opacity
         }, color));
-        $(window).on('resize', size).on('mousemove touchmove', position)
+		if( !options.isStatic ) {
+			$(window).on('resize', size).on('mousemove touchmove', position);
+		}
     });
 };
