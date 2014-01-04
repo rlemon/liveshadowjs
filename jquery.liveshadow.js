@@ -77,7 +77,11 @@ $.fn.liveShadow = function (options) {
 		render(_this, options.shadowLength, options.constAngle - options.angle, $.extend({
 			a: options.opacity
 		}, color));
-		$(window).on('mousemove', function (e) {
+		$(window).on('resize', function(e) {
+			hw = _this.offsetWidth / 2;
+			hh = _this.offsetHeight / 2;
+			pos = $(_this).offset();
+		}).on('mousemove', function (e) {
 			var dx = pos.left - e.clientX + hw,
 				dy = pos.top - e.clientY + hh,
 				a = options.constAngle - Math.atan2(dx, dy),
@@ -87,6 +91,7 @@ $.fn.liveShadow = function (options) {
 				col = $.extend({
 					a: o
 				}, color);
+				console.log(pos.left);
 			if( options.invert ) {
 				a *= -1;
 			}
