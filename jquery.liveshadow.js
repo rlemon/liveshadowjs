@@ -71,13 +71,13 @@ $.fn.liveShadow = function (options) {
     return this.each(function () {
         var hw,hh,pos,
             _this = this;
-		var size = function (e) {
+        var size = function (e) {
             hw = _this.offsetWidth / 2;
             hh = _this.offsetHeight / 2;
             pos = $(_this).offset();
         }
         var color = options.color || desaturate(getColor(this), options.desaturate);
-		var position = function (e) {
+        var position = function (e) {
             var dx = pos.left - e.clientX + hw,
                 dy = pos.top - e.clientY + hh,
                 a = options.constAngle - Math.atan2(dx, dy),
@@ -93,7 +93,7 @@ $.fn.liveShadow = function (options) {
             }
             render(_this, l, a, col);
         };
-		size();
+        size();
         render(_this, options.shadowLength, options.constAngle - options.angle, $.extend({
             a: options.opacity
         }, color));
