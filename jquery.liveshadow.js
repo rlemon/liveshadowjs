@@ -68,7 +68,7 @@ $.fn.liveShadow = function (options) {
         options.opacity = options.color.a;
     }
     options.constAngle = (90 * (Math.PI / 180));
-
+	
     return this.each(function () {
         var hw,hh,pos,
             _this = this;
