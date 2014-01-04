@@ -53,7 +53,7 @@ Default: false
 
 
 ####isStatic
-Shadow angle changes with mouse movement. 
+Shadow angle changes with mouse movement.  
 Default: false  
 
 
