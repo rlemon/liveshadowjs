@@ -69,10 +69,13 @@ $.fn.liveShadow = function (options) {
     options.constAngle = (90 * (Math.PI / 180));
 
     return this.each(function () {
-        var hw = this.offsetWidth / 2,
-            hh = this.offsetHeight / 2,
-            pos = $(this).offset(),
+        var hw,hh,pos,
             _this = this;
+		var size = function (e) {
+            hw = _this.offsetWidth / 2;
+            hh = _this.offsetHeight / 2;
+            pos = $(_this).offset();
+        }
         var color = options.color || desaturate(getColor(this), options.desaturate);
 		var position = function (e) {
             var dx = pos.left - e.clientX + hw,
@@ -90,13 +93,10 @@ $.fn.liveShadow = function (options) {
             }
             render(_this, l, a, col);
         };
+		size();
         render(_this, options.shadowLength, options.constAngle - options.angle, $.extend({
             a: options.opacity
         }, color));
-        $(window).on('resize', function (e) {
-            hw = _this.offsetWidth / 2;
-            hh = _this.offsetHeight / 2;
-            pos = $(_this).offset();
-        }).on('mousemove touchmove', position)
+        $(window).on('resize', size).on('mousemove touchmove', position)
     });
 };
