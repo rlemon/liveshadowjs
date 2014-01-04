@@ -74,14 +74,7 @@ $.fn.liveShadow = function (options) {
             pos = $(this).offset(),
             _this = this;
         var color = options.color || desaturate(getColor(this), options.desaturate);
-        render(_this, options.shadowLength, options.constAngle - options.angle, $.extend({
-            a: options.opacity
-        }, color));
-        $(window).on('resize', function (e) {
-            hw = _this.offsetWidth / 2;
-            hh = _this.offsetHeight / 2;
-            pos = $(_this).offset();
-        }).on('mousemove', function (e) {
+		var positon = function (e) {
             var dx = pos.left - e.clientX + hw,
                 dy = pos.top - e.clientY + hh,
                 a = options.constAngle - Math.atan2(dx, dy),
@@ -96,6 +89,14 @@ $.fn.liveShadow = function (options) {
                 a *= -1;
             }
             render(_this, l, a, col);
-        });
+        };
+        render(_this, options.shadowLength, options.constAngle - options.angle, $.extend({
+            a: options.opacity
+        }, color));
+        $(window).on('resize', function (e) {
+            hw = _this.offsetWidth / 2;
+            hh = _this.offsetHeight / 2;
+            pos = $(_this).offset();
+        }).on('mousemove touchmove touchstart', position)
     });
 };
